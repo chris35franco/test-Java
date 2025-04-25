@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage('Descargar código') {
             steps {
-                git branch: 'main', url: 'https://github.com/chris35franco/test-Java'
+                git 'https://github.com/chris35franco/test-Java'
             }
         }
         stage('Compilar') {
             steps {
-                sh './mvnw clean compile'  // o 'mvn clean compile' si no usas wrapper
+                sh 'mvn clean compile'
             }
         }
         stage('Pruebas') {
             steps {
-                sh './mvnw test'  // o 'mvn test'
+                sh 'mvn test'
             }
         }
     }
