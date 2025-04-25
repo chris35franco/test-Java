@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Descargar código') {
             steps {
-                git 'https://github.com/chris35franco/test-Java'
+                git branch: 'main', url: 'https://github.com/chris35franco/test-Java'
             }
         }
         stage('Compilar') {
