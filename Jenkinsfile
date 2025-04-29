@@ -1,21 +1,31 @@
 pipeline {
-    agent any
+    agent { label 'java' }
+
     stages {
-        stage('Descargar código') {
+        stage('Clonar repositorio') {
             steps {
-                git branch: 'main', url: 'https://github.com/chris35franco/test-Java'
+                git 'https://github.com/chris35franco/test-Java.git'
             }
         }
-        stage('Compilar') {
+
+        stage('Compilar proyecto') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn clean install'
             }
         }
-        stage('Pruebas') {
+
+        stage('Ejecutar pruebas') {
             steps {
                 sh 'mvn test'
             }
         }
     }
+
+    post {
+        always {
+            junit '**/target/surefire-reports/*.xml'
+        }
+    }
 }
+
 
