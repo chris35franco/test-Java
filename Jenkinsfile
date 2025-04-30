@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clonar repositorio') {
             steps {
-                git 'https://github.com/chris35franco/test-Java.git'
+                git branch: 'main', url: 'https://github.com/chris35franco/test-Java.git'
             }
         }
 
@@ -20,6 +20,8 @@ pipeline {
             }
         }
     }
+}
+
 
     post {
         always {
